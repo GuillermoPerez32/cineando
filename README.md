@@ -1,6 +1,6 @@
-# cineando
+# Cineando
 
-A new Flutter project.
+Aplicacion para adivinar actores hecha en flutter
 
 ## Getting Started
 
