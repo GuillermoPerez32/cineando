@@ -12,6 +12,8 @@ class GameState with _$GameState {
     required List<Actor> actors,
   }) = _Playing;
   const factory GameState.guessed({
-    required Actor actor,
+    required List<Actor> actors,
+    required int actorId,
+    required bool succes,
   }) = _Guessed;
 }

@@ -16,26 +16,43 @@ class GameCubit extends Cubit<GameState> {
   final random = Random();
 
   void startGame() async {
-    final List<int> ids = [
-      random.nextInt(maxActors),
-      random.nextInt(maxActors),
-      random.nextInt(maxActors),
-      random.nextInt(maxActors),
-    ];
+    emit(const GameState.loading());
     final List<Actor> actors = [];
-    try {
-      for (int id in ids) {
-        final rawActor = await client.get(
-          'https://api.themoviedb.org/3/person/$id?api_key=$apiKey',
+    final Set<int> ids = {};
+    int id;
+    while (actors.length < 4) {
+      try {
+        do {
+          id = random.nextInt(maxActors);
+        } while (ids.contains(id));
+        ids.add(id);
+        final response = await client.get(
+          'https://api.themoviedb.org/3/person/$id?api_key=$apiKey&language=es-ES',
         );
-        final Actor actor = Actor.fromJson(rawActor);
+        final Actor actor = Actor.fromJson(response.data);
         actors.add(actor);
+      } catch (e) {
+        emit(
+          GameState.error(
+            message: e.toString(),
+          ),
+        );
       }
-      emit(GameState.playing(actorId: random.nextInt(4), actors: actors));
-    } catch (e) {
-      emit(GameState.error(message: e.toString()));
     }
+    emit(
+      GameState.playing(actorId: actors[random.nextInt(4)].id, actors: actors),
+    );
   }
 
-  void guessActor(int id) {}
+  void guessActor(int id) {
+    state.whenOrNull(
+      playing: (actorId, actors) {
+        emit(
+          GameState.guessed(
+              actorId: actorId, actors: actors, succes: id == actorId),
+        );
+        startGame();
+      },
+    );
+  }
 }

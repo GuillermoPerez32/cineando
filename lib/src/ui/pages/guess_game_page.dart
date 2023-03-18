@@ -13,6 +13,7 @@ class GuessGamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
+    final game = BlocProvider.of<GameCubit>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -25,12 +26,21 @@ class GuessGamePage extends StatelessWidget {
             onPressed: () => exit(0),
             icon: const Icon(Icons.logout),
           ),
+          IconButton(
+            onPressed: () => game.startGame(),
+            icon: const Icon(Icons.restart_alt),
+          ),
         ],
       ),
       body: BlocConsumer<GameCubit, GameState>(
-        listener: (context, state) => state.whenOrNull(
-          error: (message) => Fluttertoast.showToast(msg: 'error'),
-        ),
+        listener: (context, state) {
+          state.whenOrNull(
+              guessed: (actors, actorId, succes) => Fluttertoast.showToast(
+                  msg: succes
+                      ? 'Bien'
+                      : 'Ups, el actor es ${actors.firstWhere((element) => element.id == actorId).name}',
+                  backgroundColor: succes ? Colors.green : Colors.red));
+        },
         builder: (context, state) {
           return SafeArea(
             child: Center(
@@ -48,7 +58,7 @@ class GuessGamePage extends StatelessWidget {
                         ),
                         orElse: () => const Placeholder(),
                       )),
-                  ActorSelector(),
+                  const ActorSelector(),
                 ],
               ),
             ),
