@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
@@ -44,14 +45,14 @@ class GameCubit extends Cubit<GameState> {
     );
   }
 
-  void guessActor(int id) {
+  void guessActor(int id) async {
     state.whenOrNull(
       playing: (actorId, actors) {
         emit(
           GameState.guessed(
-              actorId: actorId, actors: actors, succes: id == actorId),
+              actorId: actorId, actors: actors, selectedActor: id),
         );
-        startGame();
+        Timer(const Duration(seconds: 3), () => startGame());
       },
     );
   }

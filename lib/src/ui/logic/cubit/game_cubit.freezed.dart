@@ -22,7 +22,8 @@ mixin _$GameState {
     required TResult Function(String message) error,
     required TResult Function() loading,
     required TResult Function(int actorId, List<Actor> actors) playing,
-    required TResult Function(List<Actor> actors, int actorId, bool succes)
+    required TResult Function(
+            List<Actor> actors, int actorId, int selectedActor)
         guessed,
   }) =>
       throw _privateConstructorUsedError;
@@ -32,7 +33,8 @@ mixin _$GameState {
     TResult? Function(String message)? error,
     TResult? Function()? loading,
     TResult? Function(int actorId, List<Actor> actors)? playing,
-    TResult? Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult? Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,7 +43,8 @@ mixin _$GameState {
     TResult Function(String message)? error,
     TResult Function()? loading,
     TResult Function(int actorId, List<Actor> actors)? playing,
-    TResult Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,7 +136,8 @@ class _$_Initial implements _Initial {
     required TResult Function(String message) error,
     required TResult Function() loading,
     required TResult Function(int actorId, List<Actor> actors) playing,
-    required TResult Function(List<Actor> actors, int actorId, bool succes)
+    required TResult Function(
+            List<Actor> actors, int actorId, int selectedActor)
         guessed,
   }) {
     return initial();
@@ -146,7 +150,8 @@ class _$_Initial implements _Initial {
     TResult? Function(String message)? error,
     TResult? Function()? loading,
     TResult? Function(int actorId, List<Actor> actors)? playing,
-    TResult? Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult? Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
   }) {
     return initial?.call();
   }
@@ -158,7 +163,8 @@ class _$_Initial implements _Initial {
     TResult Function(String message)? error,
     TResult Function()? loading,
     TResult Function(int actorId, List<Actor> actors)? playing,
-    TResult Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -278,7 +284,8 @@ class _$_Error implements _Error {
     required TResult Function(String message) error,
     required TResult Function() loading,
     required TResult Function(int actorId, List<Actor> actors) playing,
-    required TResult Function(List<Actor> actors, int actorId, bool succes)
+    required TResult Function(
+            List<Actor> actors, int actorId, int selectedActor)
         guessed,
   }) {
     return error(message);
@@ -291,7 +298,8 @@ class _$_Error implements _Error {
     TResult? Function(String message)? error,
     TResult? Function()? loading,
     TResult? Function(int actorId, List<Actor> actors)? playing,
-    TResult? Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult? Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
   }) {
     return error?.call(message);
   }
@@ -303,7 +311,8 @@ class _$_Error implements _Error {
     TResult Function(String message)? error,
     TResult Function()? loading,
     TResult Function(int actorId, List<Actor> actors)? playing,
-    TResult Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -403,7 +412,8 @@ class _$_Loading implements _Loading {
     required TResult Function(String message) error,
     required TResult Function() loading,
     required TResult Function(int actorId, List<Actor> actors) playing,
-    required TResult Function(List<Actor> actors, int actorId, bool succes)
+    required TResult Function(
+            List<Actor> actors, int actorId, int selectedActor)
         guessed,
   }) {
     return loading();
@@ -416,7 +426,8 @@ class _$_Loading implements _Loading {
     TResult? Function(String message)? error,
     TResult? Function()? loading,
     TResult? Function(int actorId, List<Actor> actors)? playing,
-    TResult? Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult? Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
   }) {
     return loading?.call();
   }
@@ -428,7 +439,8 @@ class _$_Loading implements _Loading {
     TResult Function(String message)? error,
     TResult Function()? loading,
     TResult Function(int actorId, List<Actor> actors)? playing,
-    TResult Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -564,7 +576,8 @@ class _$_Playing implements _Playing {
     required TResult Function(String message) error,
     required TResult Function() loading,
     required TResult Function(int actorId, List<Actor> actors) playing,
-    required TResult Function(List<Actor> actors, int actorId, bool succes)
+    required TResult Function(
+            List<Actor> actors, int actorId, int selectedActor)
         guessed,
   }) {
     return playing(actorId, actors);
@@ -577,7 +590,8 @@ class _$_Playing implements _Playing {
     TResult? Function(String message)? error,
     TResult? Function()? loading,
     TResult? Function(int actorId, List<Actor> actors)? playing,
-    TResult? Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult? Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
   }) {
     return playing?.call(actorId, actors);
   }
@@ -589,7 +603,8 @@ class _$_Playing implements _Playing {
     TResult Function(String message)? error,
     TResult Function()? loading,
     TResult Function(int actorId, List<Actor> actors)? playing,
-    TResult Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
     required TResult orElse(),
   }) {
     if (playing != null) {
@@ -657,7 +672,7 @@ abstract class _$$_GuessedCopyWith<$Res> {
           _$_Guessed value, $Res Function(_$_Guessed) then) =
       __$$_GuessedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Actor> actors, int actorId, bool succes});
+  $Res call({List<Actor> actors, int actorId, int selectedActor});
 }
 
 /// @nodoc
@@ -672,7 +687,7 @@ class __$$_GuessedCopyWithImpl<$Res>
   $Res call({
     Object? actors = null,
     Object? actorId = null,
-    Object? succes = null,
+    Object? selectedActor = null,
   }) {
     return _then(_$_Guessed(
       actors: null == actors
@@ -683,10 +698,10 @@ class __$$_GuessedCopyWithImpl<$Res>
           ? _value.actorId
           : actorId // ignore: cast_nullable_to_non_nullable
               as int,
-      succes: null == succes
-          ? _value.succes
-          : succes // ignore: cast_nullable_to_non_nullable
-              as bool,
+      selectedActor: null == selectedActor
+          ? _value.selectedActor
+          : selectedActor // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -697,7 +712,7 @@ class _$_Guessed implements _Guessed {
   const _$_Guessed(
       {required final List<Actor> actors,
       required this.actorId,
-      required this.succes})
+      required this.selectedActor})
       : _actors = actors;
 
   final List<Actor> _actors;
@@ -711,11 +726,11 @@ class _$_Guessed implements _Guessed {
   @override
   final int actorId;
   @override
-  final bool succes;
+  final int selectedActor;
 
   @override
   String toString() {
-    return 'GameState.guessed(actors: $actors, actorId: $actorId, succes: $succes)';
+    return 'GameState.guessed(actors: $actors, actorId: $actorId, selectedActor: $selectedActor)';
   }
 
   @override
@@ -725,12 +740,13 @@ class _$_Guessed implements _Guessed {
             other is _$_Guessed &&
             const DeepCollectionEquality().equals(other._actors, _actors) &&
             (identical(other.actorId, actorId) || other.actorId == actorId) &&
-            (identical(other.succes, succes) || other.succes == succes));
+            (identical(other.selectedActor, selectedActor) ||
+                other.selectedActor == selectedActor));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_actors), actorId, succes);
+      const DeepCollectionEquality().hash(_actors), actorId, selectedActor);
 
   @JsonKey(ignore: true)
   @override
@@ -745,10 +761,11 @@ class _$_Guessed implements _Guessed {
     required TResult Function(String message) error,
     required TResult Function() loading,
     required TResult Function(int actorId, List<Actor> actors) playing,
-    required TResult Function(List<Actor> actors, int actorId, bool succes)
+    required TResult Function(
+            List<Actor> actors, int actorId, int selectedActor)
         guessed,
   }) {
-    return guessed(actors, actorId, succes);
+    return guessed(actors, actorId, selectedActor);
   }
 
   @override
@@ -758,9 +775,10 @@ class _$_Guessed implements _Guessed {
     TResult? Function(String message)? error,
     TResult? Function()? loading,
     TResult? Function(int actorId, List<Actor> actors)? playing,
-    TResult? Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult? Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
   }) {
-    return guessed?.call(actors, actorId, succes);
+    return guessed?.call(actors, actorId, selectedActor);
   }
 
   @override
@@ -770,11 +788,12 @@ class _$_Guessed implements _Guessed {
     TResult Function(String message)? error,
     TResult Function()? loading,
     TResult Function(int actorId, List<Actor> actors)? playing,
-    TResult Function(List<Actor> actors, int actorId, bool succes)? guessed,
+    TResult Function(List<Actor> actors, int actorId, int selectedActor)?
+        guessed,
     required TResult orElse(),
   }) {
     if (guessed != null) {
-      return guessed(actors, actorId, succes);
+      return guessed(actors, actorId, selectedActor);
     }
     return orElse();
   }
@@ -824,11 +843,11 @@ abstract class _Guessed implements GameState {
   const factory _Guessed(
       {required final List<Actor> actors,
       required final int actorId,
-      required final bool succes}) = _$_Guessed;
+      required final int selectedActor}) = _$_Guessed;
 
   List<Actor> get actors;
   int get actorId;
-  bool get succes;
+  int get selectedActor;
   @JsonKey(ignore: true)
   _$$_GuessedCopyWith<_$_Guessed> get copyWith =>
       throw _privateConstructorUsedError;

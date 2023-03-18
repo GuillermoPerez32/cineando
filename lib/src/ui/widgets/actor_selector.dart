@@ -15,7 +15,6 @@ class ActorSelector extends StatelessWidget {
       builder: (context, state) {
         return Center(
           child: state.maybeWhen(
-            orElse: () => const CircularProgressIndicator(),
             playing: (actorId, actors) => Wrap(
               clipBehavior: Clip.antiAliasWithSaveLayer,
               runSpacing: 5,
@@ -42,6 +41,41 @@ class ActorSelector extends StatelessWidget {
                   )
                   .toList(),
             ),
+            guessed: (actors, actorId, selectedActor) => Wrap(
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              runSpacing: 5,
+              spacing: 5,
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: actors
+                  .map(
+                    (actor) => SizedBox(
+                      width: screen.width * .45,
+                      child: ElevatedButton(
+                        onPressed: () => gameBloc.guessActor(actor.id),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: (selectedActor == actorId &&
+                                      selectedActor == actor.id) ||
+                                  actor.id == actorId
+                              ? Colors.green
+                              : selectedActor == actor.id &&
+                                      !(selectedActor == actorId)
+                                  ? Colors.red
+                                  : Colors.purple,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: Text(
+                          actor.name,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+            orElse: () => const CircularProgressIndicator(),
           ),
         );
       },

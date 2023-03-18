@@ -23,24 +23,12 @@ class GuessGamePage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () => exit(0),
-            icon: const Icon(Icons.logout),
-          ),
-          IconButton(
             onPressed: () => game.startGame(),
             icon: const Icon(Icons.restart_alt),
           ),
         ],
       ),
-      body: BlocConsumer<GameCubit, GameState>(
-        listener: (context, state) {
-          state.whenOrNull(
-              guessed: (actors, actorId, succes) => Fluttertoast.showToast(
-                  msg: succes
-                      ? 'Bien'
-                      : 'Ups, el actor es ${actors.firstWhere((element) => element.id == actorId).name}',
-                  backgroundColor: succes ? Colors.green : Colors.red));
-        },
+      body: BlocBuilder<GameCubit, GameState>(
         builder: (context, state) {
           return SafeArea(
             child: Center(
@@ -49,15 +37,21 @@ class GuessGamePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                      height: screen.height * .5,
-                      width: screen.width * .7,
-                      child: state.maybeWhen(
-                        playing: (actorId, actors) => Image.network(
-                          '$imagesBaseUrl${actors.firstWhere((a) => a.id == actorId).profilePath}',
-                          fit: BoxFit.cover,
-                        ),
-                        orElse: () => const Placeholder(),
-                      )),
+                    height: screen.height * .5,
+                    width: screen.width * .7,
+                    child: state.maybeWhen(
+                      playing: (actorId, actors) => Image.network(
+                        '$imagesBaseUrl${actors.firstWhere((a) => a.id == actorId).profilePath}',
+                        fit: BoxFit.cover,
+                      ),
+                      guessed: (actors, actorId, selectedActor) =>
+                          Image.network(
+                        '$imagesBaseUrl${actors.firstWhere((a) => a.id == actorId).profilePath}',
+                        fit: BoxFit.cover,
+                      ),
+                      orElse: () => const Placeholder(),
+                    ),
+                  ),
                   const ActorSelector(),
                 ],
               ),
