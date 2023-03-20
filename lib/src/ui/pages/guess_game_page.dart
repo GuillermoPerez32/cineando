@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:cineando/src/core/constants.dart';
 import 'package:cineando/src/ui/logic/cubit/game_cubit.dart';
 import 'package:cineando/src/ui/widgets/actor_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class GuessGamePage extends StatelessWidget {
   const GuessGamePage({super.key});
