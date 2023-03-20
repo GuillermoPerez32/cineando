@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => GameCubit()..startGame(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Cineando',
         theme: ThemeData(
           primarySwatch: Colors.purple,
         ),
