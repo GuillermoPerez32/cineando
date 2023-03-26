@@ -11,13 +11,16 @@ part 'game_state.dart';
 part 'game_cubit.freezed.dart';
 
 class GameCubit extends Cubit<GameState> {
-  GameCubit() : super(const GameState.initial());
+  GameCubit() : super(const GameState.initial(total: 0, won: 0));
 
   final client = Dio();
   final random = Random();
 
   void startGame() async {
-    emit(const GameState.loading());
+    emit(GameState.loading(
+      total: state.total,
+      won: state.won,
+    ));
     final List<Actor> actors = [];
     final Set<int> ids = {};
     int id;
@@ -36,21 +39,33 @@ class GameCubit extends Cubit<GameState> {
         emit(
           GameState.error(
             message: e.toString(),
+            total: state.total,
+            won: state.won,
           ),
         );
       }
     }
     emit(
-      GameState.playing(actorId: actors[random.nextInt(4)].id, actors: actors),
+      GameState.playing(
+        actorId: actors[random.nextInt(4)].id,
+        actors: actors,
+        won: state.won,
+        total: state.total,
+      ),
     );
   }
 
   void guessActor(int id) async {
     state.whenOrNull(
-      playing: (actorId, actors) {
+      playing: (total, won, actorId, actors) {
         emit(
           GameState.guessed(
-              actorId: actorId, actors: actors, selectedActor: id),
+            actorId: actorId,
+            actors: actors,
+            selectedActor: id,
+            total: total + 1,
+            won: id == actorId ? won + 1 : won,
+          ),
         );
         Timer(const Duration(seconds: 3), () => startGame());
       },

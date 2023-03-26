@@ -15,7 +15,7 @@ class ActorSelector extends StatelessWidget {
       builder: (context, state) {
         return Center(
           child: state.maybeWhen(
-            playing: (actorId, actors) => Wrap(
+            playing: (total, won, actorId, actors) => Wrap(
               clipBehavior: Clip.antiAliasWithSaveLayer,
               runSpacing: 5,
               spacing: 5,
@@ -41,7 +41,7 @@ class ActorSelector extends StatelessWidget {
                   )
                   .toList(),
             ),
-            guessed: (actors, actorId, selectedActor) => Wrap(
+            guessed: (total, won, actors, actorId, selectedActor) => Wrap(
               clipBehavior: Clip.antiAliasWithSaveLayer,
               runSpacing: 5,
               spacing: 5,
