@@ -38,8 +38,12 @@ class GuessGamePage extends StatelessWidget {
                     height: screen.height * .5,
                     width: screen.width * .7,
                     child: state.maybeWhen(
-                      playing: (total, won, actorId, actors) => Image.network(
-                        '$imagesBaseUrl${actors.firstWhere((a) => a.id == actorId).profilePath}',
+                      playing: (total, won, actorId, actors) => FadeInImage(
+                        image: NetworkImage(
+                            '$imagesBaseUrl${actors.firstWhere((a) => a.id == actorId).profilePath}'),
+                        placeholder: const AssetImage(
+                          'assets/loading.gif',
+                        ),
                         fit: BoxFit.cover,
                       ),
                       guessed: (total, won, actors, actorId, selectedActor) =>
@@ -47,7 +51,10 @@ class GuessGamePage extends StatelessWidget {
                         '$imagesBaseUrl${actors.firstWhere((a) => a.id == actorId).profilePath}',
                         fit: BoxFit.cover,
                       ),
-                      orElse: () => const Placeholder(),
+                      orElse: () => Image.asset(
+                        'assets/loading.gif',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const ActorSelector(),
