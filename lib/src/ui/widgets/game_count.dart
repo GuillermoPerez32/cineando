@@ -15,15 +15,15 @@ class GameCount extends StatelessWidget {
             Text(
               'Total: ${state.total}',
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.blue,
+                color: Colors.purple,
               ),
             ),
             Text(
               'Ganadas: ${state.won}',
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.green,
               ),
