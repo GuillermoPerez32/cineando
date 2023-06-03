@@ -2,6 +2,7 @@ import 'package:cineando/src/core/constants.dart';
 import 'package:cineando/src/ui/logic/cubit/game_cubit.dart';
 import 'package:cineando/src/ui/widgets/actor_selector.dart';
 import 'package:cineando/src/ui/widgets/game_count.dart';
+import 'package:cineando/src/ui/widgets/game_lifes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -59,6 +60,7 @@ class GuessGamePage extends StatelessWidget {
                   ),
                   const ActorSelector(),
                   const GameCount(),
+                  const GameLifes(),
                 ],
               ),
             ),
