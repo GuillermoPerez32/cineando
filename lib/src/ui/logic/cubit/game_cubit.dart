@@ -34,7 +34,10 @@ class GameCubit extends Cubit<GameState> {
           'https://api.themoviedb.org/3/person/$id?api_key=$apiKey&language=es-ES',
         );
         final Actor actor = Actor.fromJson(response.data);
-        actors.add(actor);
+        if (actor.biography.length > 0 || actors.length > 0) {
+          actors.add(actor);
+          print(actor);
+        }
       } catch (e) {
         emit(
           GameState.error(
@@ -45,9 +48,11 @@ class GameCubit extends Cubit<GameState> {
         );
       }
     }
+    actors.shuffle();
     emit(
       GameState.playing(
-        actorId: actors[random.nextInt(4)].id,
+        actorId:
+            actors.firstWhere((element) => element.biography.isNotEmpty).id,
         actors: actors,
         won: state.won,
         total: state.total,
